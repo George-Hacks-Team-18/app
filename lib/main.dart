@@ -1,3 +1,4 @@
+import 'package:app/pages/doctor/doctor_login_page.dart';
 import 'package:app/pages/home_page.dart';
 import 'package:app/pages/login_page.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: AppTheme.primary,
       ),
-      home: LoginPage(),
+      home: DoctorLoginPage(),
     );
   }
 }
