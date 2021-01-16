@@ -19,13 +19,26 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
   @override
   void initState() {
     patients = [
-      new Patient(firstName: 'First Name', patientNumber: '14323'),
-      new Patient(firstName: 'First Name', patientNumber: '14323'),
-      new Patient(firstName: 'First Name', patientNumber: '14323'),
-      new Patient(firstName: 'First Name', patientNumber: '14323'),
-      new Patient(firstName: 'First Name', patientNumber: '14323'),
-      new Patient(firstName: 'First Name', patientNumber: '14323'),
-      new Patient(firstName: 'First Name', patientNumber: '14323'),
+      new Patient(
+          firstName: 'First',
+          lastName: 'Last',
+          middleName: 'M',
+          patientNumber: '14323'),
+      new Patient(
+          firstName: 'First',
+          lastName: 'Last',
+          middleName: 'M',
+          patientNumber: '14323'),
+      new Patient(
+          firstName: 'First',
+          lastName: 'Last',
+          middleName: 'M',
+          patientNumber: '14323'),
+      new Patient(
+          firstName: 'First',
+          lastName: 'Last',
+          middleName: 'M',
+          patientNumber: '14323'),
     ];
     renderPatients = patients;
     super.initState();
@@ -49,7 +62,8 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ThemedText(renderPatients[i].firstName),
+                            ThemedText(
+                                '${renderPatients[i].lastName}, ${renderPatients[i].firstName} ${renderPatients[i].middleName}'),
                             ThemedText(renderPatients[i].patientNumber),
                           ],
                         ),
@@ -62,13 +76,17 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
   }
 
   List<Patient> newPatients(String search) {
-    print(search);
     List<Patient> _patients = [];
+    search = search.toLowerCase();
 
-    for (Patient p in patients)
-      if (p.firstName.toLowerCase().contains(search.toLowerCase()) ||
-          p.patientNumber.toLowerCase().contains(search.toLowerCase()))
-        _patients.add(p);
+    for (Patient p in patients) {
+      String name =
+              '${p.lastName}, ${p.firstName} ${p.middleName}'.toLowerCase(),
+          name2 = '${p.firstName} ${p.lastName}'.toLowerCase();
+      if (name.contains(search) ||
+          name2.contains(search) ||
+          p.patientNumber.toLowerCase().contains(search)) _patients.add(p);
+    }
 
     return _patients;
   }
