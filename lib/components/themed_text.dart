@@ -64,7 +64,7 @@ TextStyle themedTextStyle(Type type) {
     case Type.header:
       return TextStyle(
         color: AppTheme.primary,
-        fontSize: 32,
+        fontSize: 24,
         fontWeight: FontWeight.bold,
       );
     default:

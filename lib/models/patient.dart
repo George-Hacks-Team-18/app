@@ -1,6 +1,6 @@
 class Patient {
-  final String firstName, lastName, middleName, dateOfBirth, patientNumber;
-  final List<Dose> doses;
+  String firstName, lastName, middleName, dateOfBirth, patientNumber;
+  List<Dose> doses;
 
   Patient(
       {this.firstName,
@@ -12,7 +12,7 @@ class Patient {
 }
 
 class Dose {
-  final String productName, lotNumber, date, professionalOrClinic;
+  String productName, lotNumber, date, professionalOrClinic;
 
   Dose(
       {this.productName, this.lotNumber, this.date, this.professionalOrClinic});

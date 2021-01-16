@@ -18,6 +18,7 @@ class ThemedTextField extends StatelessWidget {
         child: Container(
           color: AppTheme.lightGray,
           child: TextField(
+            onChanged: onChanged,
             decoration: InputDecoration(
               border: InputBorder.none,
               focusedBorder: InputBorder.none,

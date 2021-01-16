@@ -5,6 +5,8 @@ import 'package:app/globals/app_theme.dart';
 import 'package:app/pages/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 login(loggedinStudent, loggedinTeacher) => {};
 
 class LoginPage extends StatefulWidget {
@@ -82,7 +84,10 @@ class _LoginPageState extends State<LoginPage> {
                           width: double.infinity,
                           child: Button(
                             'Log In',
-                            onPressed: () => print('login'),
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage())),
                           ),
                         ),
                       ),
