@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 
 class DoseInfoPage extends StatelessWidget {
   final int doseNum;
-  final Dose dose;
-  DoseInfoPage(this.doseNum, this.dose);
+  final String dosedate;
+  DoseInfoPage(this.doseNum, this.dosedate);
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +24,8 @@ class DoseInfoPage extends StatelessWidget {
             title: 'Dose $doseNum',
             children: [
               InfoTile(
-                dose.productName,
-                'Product Name',
-                color: AppTheme.secondaryText,
-              ),
-              InfoTile(
-                dose.lotNumber,
-                'Lot Number',
-                color: AppTheme.secondaryText,
-              ),
-              InfoTile(
-                dose.date,
+                dosedate,
                 'Date',
-                color: AppTheme.secondaryText,
-              ),
-              InfoTile(
-                dose.professionalOrClinic,
-                'Professional',
                 color: AppTheme.secondaryText,
               ),
             ],
