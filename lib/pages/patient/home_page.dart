@@ -71,8 +71,11 @@ class HomePage extends StatelessWidget {
                             onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) =>
-                                        DoseInfoPage(i + 1, date[i]['vax']))),
+                                    builder: (c) => DoseInfoPage(
+                                        new Dose(
+                                            date: date[i]['vax'],
+                                            productName: data[index]['product']),
+                                        i + 1))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -115,7 +118,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   InfoTile(patient.firstName, 'First Name'),
                   InfoTile(patient.lastName, 'Last Name'),
-                  InfoTile(patient.middleName, 'MiddleInitial'),
+                  InfoTile(patient.middleName, 'Middle Initial'),
                   InfoTile(patient.dateOfBirth, 'Date of Birth'),
                   InfoTile(patient.patientNumber, 'Patient Number'),
                 ],
