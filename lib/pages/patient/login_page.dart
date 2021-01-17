@@ -26,13 +26,14 @@ class _LoginPageState extends State<LoginPage> {
         color: AppTheme.scaffoldColor,
         showBack: true,
       ),
-      SliverFillRemaining(
+      SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: ClipRRect(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(32), topRight: Radius.circular(32)),
             child: Container(
+              height: MediaQuery.of(context).size.height,
               color: AppTheme.scaffoldColor,
               child: Column(
                 children: [
