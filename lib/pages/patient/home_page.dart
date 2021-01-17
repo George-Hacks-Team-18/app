@@ -47,8 +47,7 @@ class HomePage extends StatelessWidget {
                             "assets/yesvaccineblank.png",
                             height: 72,
                           ),
-                          ThemedText("Dose ${i + 1}",
-                              color: AppTheme.buttonText)
+                          ThemedText(dose.date, color: AppTheme.buttonText)
                         ],
                       ),
                     ),
@@ -58,16 +57,16 @@ class HomePage extends StatelessWidget {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
-                      height: 100,
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      color: Color(0xFFFFAC9B),
-                      child: Column(
-                        children: [
-                          Image.asset("assets/novaccineblank.png", height: 72),
-                          ThemedText("Dose ${i + 1}",
-                              color: AppTheme.buttonText)
-                        ],
-                      )),
+                    height: 100,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    color: AppTheme.red,
+                    child: Column(
+                      children: [
+                        Image.asset("assets/novaccineblank.png", height: 72),
+                        ThemedText("Dose ${i + 1}", color: AppTheme.buttonText)
+                      ],
+                    ),
+                  ),
                 );
               }
             },
@@ -80,7 +79,7 @@ class HomePage extends StatelessWidget {
           children: [
             InfoTile(patient.firstName, 'First Name'),
             InfoTile(patient.lastName, 'Last Name'),
-            InfoTile(patient.middleName, 'Middle Name'),
+            InfoTile(patient.middleName, 'Middle Initial'),
             InfoTile(patient.dateOfBirth, 'Date of Birth'),
             InfoTile(patient.patientNumber, 'Patient Number'),
           ],
