@@ -6,9 +6,8 @@ import 'package:app/globals/app_theme.dart';
 import 'package:app/pages/patient/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
-import 'doctor_home_page.dart';
-
-login(loggedinStudent, loggedinTeacher) => {};
+import '../doctor_home_page.dart';
+import 'login_function.dart';
 
 class DoctorLoginPage extends StatefulWidget {
   @override
@@ -16,7 +15,7 @@ class DoctorLoginPage extends StatefulWidget {
 }
 
 class _DoctorLoginPageState extends State<DoctorLoginPage> {
-  String patientNumber, password;
+  String username, password;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +49,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                     ),
                     ThemedTextField(
                       text: 'Username',
-                      onChanged: (v) => patientNumber = v,
+                      onChanged: (v) => username = v,
                     ),
                     ThemedTextField(
                       text: 'Password',
@@ -77,10 +76,16 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                         width: double.infinity,
                         child: Button(
                           'Log In',
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DoctorHomePage())),
+                          onPressed: () async {
+                            bool canLogin =
+                                await login(username, password ?? '', context);
+                            canLogin
+                                ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DoctorHomePage()))
+                                : print('no');
+                          },
                         ),
                       ),
                     ),

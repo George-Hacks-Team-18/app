@@ -7,7 +7,7 @@ import 'package:app/globals/app_theme.dart';
 import 'package:app/pages/patient/login_page/login_page.dart';
 import 'package:flutter/material.dart';
 
-import 'doctor/doctor_login_page.dart';
+import 'doctor/login_page/doctor_login_page.dart';
 
 class SelectionPage extends StatelessWidget {
   @override

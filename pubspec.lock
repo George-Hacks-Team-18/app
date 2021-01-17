@@ -147,13 +147,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  image:
-    dependency: transitive
-    description:
-      name: image
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.19"
   glob:
     dependency: transitive
     description:
@@ -175,6 +168,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.19"
   integration_test:
     dependency: "direct dev"
     description: flutter
@@ -250,6 +250,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.3"
+  pedantic:
+    dependency: transitive
+    description:
+      name: pedantic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.10.0-nullsafety.3"
   petitparser:
     dependency: transitive
     description:
