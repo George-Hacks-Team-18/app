@@ -12,19 +12,9 @@ import 'package:app/models/patient.dart';
 import 'package:app/pages/patient/dose_info_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  final int paceintNumber;
-  HomePage({@required this.paceintNumber});
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class HomePage extends StatelessWidget {
+  final int patientNumber;
+  HomePage({@required this.patientNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           int index;
 
           for (var i = 0; i < data.length; i++) {
-            if (data[i]['patientNumber'] == widget.paceintNumber) {
+            if (data[i]['patientNumber'] == patientNumber) {
               index = i;
             }
           }

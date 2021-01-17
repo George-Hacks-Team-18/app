@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => HomePage(
-                                          paceintNumber:
+                                          patientNumber:
                                               int.parse(patientNumber),
                                         )))
                             : print('no');

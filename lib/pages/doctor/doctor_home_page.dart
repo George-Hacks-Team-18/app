@@ -50,7 +50,8 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                             onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) => EditPatientInfoPage())),
+                                    builder: (c) => EditPatientInfoPage(
+                                        renderPatients[i].patientNumber))),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
