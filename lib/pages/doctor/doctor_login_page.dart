@@ -44,7 +44,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.asset(
-                            'assets/icon.png',
+                            'assets/vaxifiedicon.png',
                             height: 142,
                           ),
                         ),
