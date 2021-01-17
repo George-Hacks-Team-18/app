@@ -16,7 +16,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      collapsedHeight: 64,
+      collapsedHeight: 80,
       expandedHeight: 128,
       automaticallyImplyLeading: false,
       flexibleSpace: FlexibleSpaceBar(

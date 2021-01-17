@@ -3,6 +3,8 @@ import 'package:app/components/header.dart';
 import 'package:app/components/info_tile.dart';
 import 'package:app/components/section.dart';
 import 'package:app/components/themed_scaffold.dart';
+import 'package:app/components/themed_text.dart';
+import 'package:app/components/themed_text_field.dart';
 import 'package:app/globals/app_theme.dart';
 import 'package:app/models/patient.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +26,18 @@ class _EditDosePageState extends State<EditDosePage> {
 
   @override
   void initState() {
-    nameController = new TextEditingController(text: widget.dose.productName);
-    numberController = new TextEditingController(text: widget.dose.lotNumber);
-    dateController = new TextEditingController(text: widget.dose.date);
-    professionalController =
-        new TextEditingController(text: widget.dose.professionalOrClinic);
+    if (widget.dose == null) {
+      nameController = new TextEditingController(text: '');
+      numberController = new TextEditingController(text: '');
+      dateController = new TextEditingController(text: '');
+      professionalController = new TextEditingController(text: '');
+    } else {
+      nameController = new TextEditingController(text: widget.dose.productName);
+      numberController = new TextEditingController(text: widget.dose.lotNumber);
+      dateController = new TextEditingController(text: widget.dose.date);
+      professionalController =
+          new TextEditingController(text: widget.dose.professionalOrClinic);
+    }
     super.initState();
   }
 
@@ -36,7 +45,7 @@ class _EditDosePageState extends State<EditDosePage> {
   Widget build(BuildContext context) {
     return ThemedScaffold([
       Header(
-        'Edit Dose Info',
+        widget.dose == null ? 'Add Dose Info' : 'Edit Dose Info',
         showBack: true,
       ),
       SliverList(
@@ -45,10 +54,10 @@ class _EditDosePageState extends State<EditDosePage> {
             Section(
               title: 'Dose ${widget.doseNum}',
               children: [
-                EditInfoTile('Product Name', controller: nameController),
-                EditInfoTile('Lot Number', controller: numberController),
-                EditInfoTile('Date', controller: dateController),
-                EditInfoTile('Professional',
+                CustomTextField('Product Name', controller: nameController),
+                CustomTextField('Lot Number', controller: numberController),
+                CustomTextField('Date', controller: dateController),
+                CustomTextField('Professional',
                     controller: professionalController),
               ],
             ),
@@ -57,7 +66,7 @@ class _EditDosePageState extends State<EditDosePage> {
               child: SizedBox(
                 width: double.infinity,
                 child: Button(
-                  'Save Changes',
+                  widget.dose == null ? 'Add Dose Info' : 'Save Changes',
                   onPressed: () {},
                 ),
               ),
