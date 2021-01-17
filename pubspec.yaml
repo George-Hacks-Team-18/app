@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_launcher_icons: "^0.8.1"
+  http:
 
 flutter_icons:
   image_path_ios: "assets/launcher/logo.png" 
