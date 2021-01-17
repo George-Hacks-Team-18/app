@@ -4,6 +4,8 @@ import 'package:app/components/info_tile.dart';
 import 'package:app/components/themed_scaffold.dart';
 import 'package:app/components/themed_text.dart';
 import 'package:app/components/themed_text_field.dart';
+import 'package:app/globals/getData.dart';
+import 'package:app/models/parse_json.dart';
 import 'package:app/models/patient.dart';
 import 'package:app/pages/doctor/edit_patient_info_page.dart';
 import 'package:flutter/material.dart';
@@ -16,32 +18,12 @@ class DoctorHomePage extends StatefulWidget {
 
 class _DoctorHomePageState extends State<DoctorHomePage> {
   List<Patient> patients, renderPatients;
+  bool loading;
 
   @override
   void initState() {
-    patients = [
-      new Patient(
-          firstName: 'First',
-          lastName: 'Last',
-          middleName: 'M',
-          patientNumber: '14323'),
-      new Patient(
-          firstName: 'First',
-          lastName: 'Last',
-          middleName: 'M',
-          patientNumber: '14323'),
-      new Patient(
-          firstName: 'First',
-          lastName: 'Last',
-          middleName: 'M',
-          patientNumber: '14323'),
-      new Patient(
-          firstName: 'First',
-          lastName: 'Last',
-          middleName: 'M',
-          patientNumber: '14323'),
-    ];
-    renderPatients = patients;
+    loading = true;
+    loadPatients();
     super.initState();
   }
 
@@ -57,31 +39,35 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
             text: 'Search',
             onChanged: (v) => setState(() => renderPatients = newPatients(v))),
       ),
-      SliverList(
-          delegate: SliverChildBuilderDelegate(
-              (c, i) => Column(
-                    children: [
-                      TextButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (c) => EditPatientInfoPage())),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ThemedText(
-                                  '${renderPatients[i].lastName}, ${renderPatients[i].firstName} ${renderPatients[i].middleName}'),
-                              ThemedText(renderPatients[i].patientNumber),
-                            ],
+      loading
+          ? SliverFillRemaining(
+              child: Center(child: CircularProgressIndicator()))
+          : SliverList(
+              delegate: SliverChildBuilderDelegate(
+                  (c, i) => Column(
+                        children: [
+                          TextButton(
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (c) => EditPatientInfoPage())),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ThemedText(
+                                      '${renderPatients[i].lastName}, ${renderPatients[i].firstName} ${renderPatients[i].middleName}'),
+                                  ThemedText(renderPatients[i].patientNumber),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+                          Divider()
+                        ],
                       ),
-                      Divider()
-                    ],
-                  ),
-              childCount: renderPatients.length))
+                  childCount: renderPatients.length))
     ]);
   }
 
@@ -99,5 +85,27 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
     }
 
     return _patients;
+  }
+
+  void loadPatients() async {
+    List<Patient> _patients = [];
+    final album = await fetchAlbum();
+
+    album.forEach((p) {
+      print(p);
+      List<String> names = p['name'].split(' ');
+
+      _patients.add(new Patient(
+          firstName: names[0],
+          lastName: names[1],
+          middleName: names.length > 2 ? names[2] : '',
+          patientNumber: p['patientNumber'].toString()));
+    });
+
+    setState(() {
+      patients = _patients;
+      renderPatients = patients;
+      loading = false;
+    });
   }
 }
