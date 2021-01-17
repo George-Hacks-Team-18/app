@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Vaxified',
       theme: ThemeData(
         primaryColor: AppTheme.primary,
+        scaffoldBackgroundColor: AppTheme.scaffoldColor,
       ),
       home: SelectionPage(),
     );

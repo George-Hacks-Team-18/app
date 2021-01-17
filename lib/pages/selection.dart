@@ -11,12 +11,13 @@ class SelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: CustomScrollView(
+      physics: NeverScrollableScrollPhysics(),
       slivers: [
         Header("Welcome"),
         SliverFillRemaining(
             child: Column(
           children: [
-            SizedBox(height: 36),
+            SizedBox(height: 56),
             Padding(
               padding: const EdgeInsets.all(12),
               child: SizedBox(
@@ -29,9 +30,7 @@ class SelectionPage extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: Container(),
-            ),
+            Expanded(child: Container()),
             SizedBox(
               width: double.infinity,
               child: Padding(
