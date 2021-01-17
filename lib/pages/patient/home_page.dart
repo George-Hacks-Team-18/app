@@ -27,10 +27,12 @@ class HomePage extends StatelessWidget {
               if (patient.doses.length > i) {
                 Dose dose = patient.doses[i];
 
-                return Container(
-                  height: 72,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: TextButton(
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    height: 100,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: TextButton(
                       style: TextButton.styleFrom(
                           backgroundColor: AppTheme.primary,
                           padding: EdgeInsets.zero),
@@ -38,21 +40,35 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (c) => DoseInfoPage(i + 1, dose))),
-                      child: Container(
-                        height: 72,
-                        child: Column(children: [
-                          Image.asset("assets/yesvaccineblank.png"),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/yesvaccineblank.png",
+                            height: 72,
+                          ),
                           ThemedText("Dose ${i + 1}",
                               color: AppTheme.buttonText)
-                        ]),
-                      )),
+                        ],
+                      ),
+                    ),
+                  ),
                 );
               } else {
-                return Container(
-                    height: 72,
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    color: Color(0xFFFFAC9B),
-                    child: Image.asset("assets/novaccineblank.png"));
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                      height: 100,
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      color: Color(0xFFFFAC9B),
+                      child: Column(
+                        children: [
+                          Image.asset("assets/novaccineblank.png", height: 72),
+                          ThemedText("Dose ${i + 1}",
+                              color: AppTheme.buttonText)
+                        ],
+                      )),
+                );
               }
             },
           ),
