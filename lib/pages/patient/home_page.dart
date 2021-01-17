@@ -47,8 +47,7 @@ class HomePage extends StatelessWidget {
                             "assets/yesvaccineblank.png",
                             height: 72,
                           ),
-                          ThemedText("Dose ${i + 1}",
-                              color: AppTheme.buttonText)
+                          ThemedText(dose.date, color: AppTheme.buttonText)
                         ],
                       ),
                     ),
