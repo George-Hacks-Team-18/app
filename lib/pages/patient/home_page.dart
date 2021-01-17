@@ -30,12 +30,11 @@ class _HomePageState extends State<HomePage> {
       future: fetchAlbum(),
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done)
-          return Center(child: CircularProgressIndicator());
+          return Scaffold(body: Center(child: CircularProgressIndicator()));
         else if (snapshot.hasError)
           return Text("${snapshot.error}");
         else {
           var data = snapshot.data;
-          print(data);
           int index;
 
           for (var i = 0; i < data.length; i++) {
