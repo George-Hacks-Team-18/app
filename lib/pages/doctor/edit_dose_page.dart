@@ -66,7 +66,7 @@ class _EditDosePageState extends State<EditDosePage> {
               child: SizedBox(
                 width: double.infinity,
                 child: Button(
-                  'Save Changes',
+                  widget.dose == null ? 'Add Dose Info' : 'Save Changes',
                   onPressed: () {},
                 ),
               ),
