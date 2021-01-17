@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/components/header.dart';
 import 'package:app/components/info_tile.dart';
 import 'package:app/components/section.dart';
@@ -35,7 +37,6 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.connectionState != ConnectionState.done)
           return Center(child: CircularProgressIndicator());
         var data = snapshot.data;
-        print(data);
         int index;
         for (var i = 0; i < data.length; i++) {
           if (data[i]['patientNumber'] == widget.paceintNumber) {
@@ -55,7 +56,10 @@ class _HomePageState extends State<HomePage> {
                 children: List.generate(
                   2,
                   (i) {
-                    if (patient.doses.length > i) {
+                    var date = jsonDecode(data[index]['date']);
+                    print(date.runtimeType);
+                    if (i == 0 && data[index]['date'] != null) {
+                      print('hi');
                       Dose dose = patient.doses[i];
 
                       return ClipRRect(
