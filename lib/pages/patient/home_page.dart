@@ -116,6 +116,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   InfoTile(data[index]['name'], 'First Name'),
                   InfoTile(data[index]['dob'], 'Date of Birth'),
+                  InfoTile(data[index]['product'], "Product"),
                   InfoTile(data[index]['patientNumber'].toString(),
                       'Patient Number'),
                 ],
