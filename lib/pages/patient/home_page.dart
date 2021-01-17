@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/components/header.dart';
 import 'package:app/components/info_tile.dart';
 import 'package:app/components/section.dart';
@@ -35,7 +37,6 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.connectionState != ConnectionState.done)
           return Center(child: CircularProgressIndicator());
         var data = snapshot.data;
-        print(data);
         int index;
         for (var i = 0; i < data.length; i++) {
           if (data[i]['patientNumber'] == widget.paceintNumber) {
@@ -55,9 +56,9 @@ class _HomePageState extends State<HomePage> {
                 children: List.generate(
                   2,
                   (i) {
-                    if (patient.doses.length > i) {
-                      Dose dose = patient.doses[i];
-
+                    var date = jsonDecode(data[index]['date']);
+                    print(date[i]['vax']);
+                    if (date[i]['vax'] != "") {
                       return ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Container(
@@ -70,7 +71,8 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) => DoseInfoPage(i + 1, dose))),
+                                    builder: (c) =>
+                                        DoseInfoPage(i, date[i]['vax']))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -78,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                                   "assets/yesvaccineblank.png",
                                   height: 72,
                                 ),
-                                ThemedText(dose.date,
+                                ThemedText(date[i]['vax'],
                                     color: AppTheme.buttonText)
                               ],
                             ),
