@@ -26,6 +26,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
           Header(
             'Doctor Login',
             color: AppTheme.scaffoldColor,
+            showBack: true,
           ),
           SliverFillRemaining(
             child: Padding(

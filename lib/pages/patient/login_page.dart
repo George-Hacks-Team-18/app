@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
           Header(
             'Login',
             color: AppTheme.scaffoldColor,
+            showBack: true,
           ),
           SliverFillRemaining(
             child: Padding(
