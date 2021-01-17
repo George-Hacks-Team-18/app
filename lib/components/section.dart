@@ -6,7 +6,8 @@ class Section extends StatelessWidget {
   final List<Widget> children;
   final String title;
   final Color color;
-  Section({this.children, this.color = AppTheme.primary, @required this.title});
+  Section(
+      {this.children, this.color = AppTheme.lightGray, @required this.title});
 
   @override
   Widget build(BuildContext context) {

@@ -90,6 +90,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
           ),
         )
       ],
+      color: AppTheme.primary,
     );
   }
 }
