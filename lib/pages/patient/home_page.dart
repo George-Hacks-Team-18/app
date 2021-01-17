@@ -30,8 +30,9 @@ class HomePage extends StatelessWidget {
                 return Container(
                   height: 72,
                   width: MediaQuery.of(context).size.width * 0.4,
-                  child: FlatButton(
-                    color: AppTheme.primary,
+                  child: TextButton(
+                    style:
+                        TextButton.styleFrom(backgroundColor: AppTheme.primary),
                     onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
