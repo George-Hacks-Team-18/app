@@ -4,6 +4,7 @@ import 'package:app/components/info_tile.dart';
 import 'package:app/components/section.dart';
 import 'package:app/components/themed_scaffold.dart';
 import 'package:app/components/themed_text.dart';
+import 'package:app/components/themed_text_field.dart';
 import 'package:app/globals/app_theme.dart';
 import 'package:app/globals/patient_info.dart';
 import 'package:app/models/patient.dart';
@@ -88,14 +89,26 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                         child: Container(
                           height: 100,
                           width: MediaQuery.of(context).size.width * 0.4,
-                          color: AppTheme.red,
-                          child: Column(
-                            children: [
-                              Image.asset("assets/novaccineblank.png",
-                                  height: 72),
-                              ThemedText("Dose ${i + 1}",
-                                  color: AppTheme.buttonText)
-                            ],
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                                backgroundColor: AppTheme.red,
+                                padding: EdgeInsets.zero),
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (c) =>
+                                        EditDosePage(doseNum: i + 1))),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  "assets/novaccineblank.png",
+                                  height: 72,
+                                ),
+                                ThemedText('Dose ${i + 1}',
+                                    color: AppTheme.buttonText)
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -108,13 +121,14 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                 title: 'Patient Info',
                 color: AppTheme.lightGray,
                 children: [
-                  EditInfoTile('First Name', controller: firstNameController),
-                  EditInfoTile('Last Name', controller: lastNameController),
-                  EditInfoTile('Middle Initial',
+                  CustomTextField('First Name',
+                      controller: firstNameController),
+                  CustomTextField('Last Name', controller: lastNameController),
+                  CustomTextField('Middle Initial',
                       controller: middleInitialController),
-                  EditInfoTile('Date of Birth',
+                  CustomTextField('Date of Birth',
                       controller: birthDateController),
-                  EditInfoTile('Patient Number',
+                  CustomTextField('Patient Number',
                       controller: patientNumController),
                 ],
               ),
