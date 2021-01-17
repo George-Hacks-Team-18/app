@@ -24,7 +24,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
       body: CustomScrollView(
         slivers: [
           Header(
-            'Doctor Login',
+            'Medical Login',
             color: AppTheme.scaffoldColor,
             showBack: true,
           ),
