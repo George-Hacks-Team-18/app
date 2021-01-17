@@ -19,30 +19,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future futureAlbum;
-
   @override
   void initState() {
-    futureAlbum = fetchAlbum();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: futureAlbum,
+      future: fetchAlbum(),
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done)
           return Center(child: CircularProgressIndicator());
-        var data = snapshot.data;
-        print(data);
-        int index;
-        for (var i = 0; i < data.length; i++) {
-          if (data[i]['patientNumber'] == widget.paceintNumber) {
-            index = i;
+        else if (snapshot.hasError)
+          return Text("${snapshot.error}");
+        else {
+          var data = snapshot.data;
+          print(data);
+          int index;
+
+          for (var i = 0; i < data.length; i++) {
+            if (data[i]['patientNumber'] == widget.paceintNumber) {
+              index = i;
+            }
           }
-        }
-        if (snapshot.hasData) {
+
           return ThemedScaffold([
             Header(
               'Info',
@@ -119,12 +120,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ])),
           ]);
-        } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
         }
-
-        // By default, show a loading spinner.
-        return CircularProgressIndicator();
       },
     );
   }

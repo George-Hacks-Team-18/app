@@ -2,9 +2,12 @@ import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 
-Future fetchAlbum() async {
+Future<dynamic> fetchAlbum() async {
   final response = await http
       .get('http://ec2-52-4-221-100.compute-1.amazonaws.com/api/getData');
+  print('---------');
+  print(response);
+  print('---------');
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
