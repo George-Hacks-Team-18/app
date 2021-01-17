@@ -104,13 +104,13 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                   onPressed: () => Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (c) =>
-                                              EditDosePage(doseNum: i + 1))),
+                                          builder: (c) => EditDosePage(
+                                              doseNum: i + 1, index: index))),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Image.asset(
-                                        "assets/novaccineblank.png",
+                                        "assets/addvaccineblank.png",
                                         height: 72,
                                       ),
                                       ThemedText('Dose ${i + 1}',
