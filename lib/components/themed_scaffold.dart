@@ -10,18 +10,14 @@ class ThemedScaffold extends StatelessWidget {
     if (color != null)
       return Scaffold(
         backgroundColor: color,
-        body: SafeArea(
-          child: CustomScrollView(
-            slivers: slivers,
-          ),
+        body: CustomScrollView(
+          slivers: slivers,
         ),
       );
     else
       return Scaffold(
-        body: SafeArea(
-          child: CustomScrollView(
-            slivers: slivers,
-          ),
+        body: CustomScrollView(
+          slivers: slivers,
         ),
       );
   }

@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
         children: [
           CustomScrollView(
             slivers: [
-              Header('Sign Up'),
+              Header('Sign Up', showBack: true),
               SliverList(
                 delegate: SliverChildListDelegate([
                   Padding(
@@ -40,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.asset(
-                        'assets/icon.png',
+                        'assets/vaxbanner.png',
                         height: 142,
                       ),
                     ),
