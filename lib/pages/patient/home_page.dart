@@ -26,12 +26,21 @@ class HomePage extends StatelessWidget {
         else if (snapshot.hasError)
           return Text("${snapshot.error}");
         else {
+          Patient patient;
           var data = snapshot.data;
           int index;
 
           for (var i = 0; i < data.length; i++) {
             if (data[i]['patientNumber'] == patientNumber) {
               index = i;
+              List<String> names = data[i]['name'].split(' ');
+              patient = new Patient(
+                firstName: names[0],
+                lastName: names[1],
+                middleName: names.length > 2 ? names[2] : '',
+                dateOfBirth: data[i]['dob'],
+                patientNumber: data[i]['patientNumber'].toString(),
+              );
             }
           }
 
@@ -63,7 +72,7 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (c) =>
-                                        DoseInfoPage(i, date[i]['vax']))),
+                                        DoseInfoPage(i + 1, date[i]['vax']))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -104,10 +113,11 @@ class HomePage extends StatelessWidget {
                 title: 'Patient Info',
                 color: AppTheme.lightGray,
                 children: [
-                  InfoTile(data[index]['name'], 'First Name'),
-                  InfoTile(data[index]['dob'], 'Date of Birth'),
-                  InfoTile(data[index]['patientNumber'].toString(),
-                      'Patient Number'),
+                  InfoTile(patient.firstName, 'First Name'),
+                  InfoTile(patient.lastName, 'Last Name'),
+                  InfoTile(patient.middleName, 'MiddleInitial'),
+                  InfoTile(patient.dateOfBirth, 'Date of Birth'),
+                  InfoTile(patient.patientNumber, 'Patient Number'),
                 ],
               ),
             ])),
