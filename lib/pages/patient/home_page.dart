@@ -32,7 +32,10 @@ class _HomePageState extends State<HomePage> {
     return FutureBuilder(
       future: futureAlbum,
       builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done)
+          return Center(child: CircularProgressIndicator());
         var data = snapshot.data;
+        print(data);
         int index;
         for (var i = 0; i < data.length; i++) {
           if (data[i]['patientNumber'] == widget.paceintNumber) {
