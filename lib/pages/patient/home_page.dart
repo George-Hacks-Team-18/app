@@ -11,12 +11,15 @@ import 'package:app/pages/patient/dose_info_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
+  final int paceintNumber;
+  HomePage({@required this.paceintNumber});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<Album> futureAlbum;
+  Future futureAlbum;
 
   @override
   void initState() {
@@ -26,9 +29,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Album>(
+    return FutureBuilder(
       future: futureAlbum,
       builder: (context, snapshot) {
+        var data = snapshot.data;
+        int index;
+        for (var i = 0; i < data.length; i++) {
+          if (data[i]['patientNumber'] == widget.paceintNumber) {
+            index = i;
+          }
+        }
         if (snapshot.hasData) {
           return ThemedScaffold([
             Header(
@@ -98,11 +108,10 @@ class _HomePageState extends State<HomePage> {
                 title: 'Patient Info',
                 color: AppTheme.lightGray,
                 children: [
-                  InfoTile(patient.firstName, 'First Name'),
-                  InfoTile(patient.lastName, 'Last Name'),
-                  InfoTile(patient.middleName, 'Middle Initial'),
-                  InfoTile(patient.dateOfBirth, 'Date of Birth'),
-                  InfoTile(patient.patientNumber, 'Patient Number'),
+                  InfoTile(data[index]['name'], 'First Name'),
+                  InfoTile(data[index]['dob'], 'Date of Birth'),
+                  InfoTile(data[index]['patientNumber'].toString(),
+                      'Patient Number'),
                 ],
               ),
             ])),

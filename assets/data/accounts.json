@@ -1,10 +1,10 @@
 [
     {
-        "patientNumber": 2222,
+        "patientNumber": 1,
         "password": "2222"
     },
     {
-        "patientNumber": 1234,
+        "patientNumber": 2,
         "password": "1234"
     }
 ]
