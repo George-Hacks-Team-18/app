@@ -26,6 +26,7 @@ class EditPatientInfoPage extends StatefulWidget {
 class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
   bool loading;
   Map data;
+  int index;
   TextEditingController firstNameController,
       lastNameController,
       middleInitialController,
@@ -60,8 +61,6 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                         (i) {
                           var date = jsonDecode(data['date']);
                           if (date[i]['vax'] != "") {
-                            Dose dose = patient.doses[i];
-
                             return ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Container(
@@ -75,7 +74,9 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (c) => EditDosePage(
-                                              doseNum: i + 1, dose: dose))),
+                                                index: index,
+                                                doseNum: i + 1,
+                                              ))),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -83,7 +84,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                         "assets/yesvaccineblank.png",
                                         height: 72,
                                       ),
-                                      ThemedText(dose.date,
+                                      ThemedText(date[i]['vax'],
                                           color: AppTheme.buttonText)
                                     ],
                                   ),
@@ -163,19 +164,21 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
   void load() async {
     final List album = await fetchAlbum();
 
-    for (Map p in album) {
-      if (p['patientNumber'] == int.parse(widget.patientNumber)) {
-        List<String> names = p['name'].split(' ');
+    for (int i = 0; i < album.length; i++) {
+      if (album[i]['patientNumber'] == int.parse(widget.patientNumber)) {
+        List<String> names = album[i]['name'].split(' ');
 
         setState(() {
-          data = p;
+          data = album[i];
+          index = i;
           firstNameController = new TextEditingController(text: names[0]);
           lastNameController = new TextEditingController(text: names[1]);
           middleInitialController =
               new TextEditingController(text: names.length > 2 ? names[2] : '');
-          birthDateController = new TextEditingController(text: p['dob']);
-          patientNumController =
-              new TextEditingController(text: p['patientNumber'].toString());
+          birthDateController =
+              new TextEditingController(text: album[i]['dob']);
+          patientNumController = new TextEditingController(
+              text: album[i]['patientNumber'].toString());
           loading = false;
         });
 
