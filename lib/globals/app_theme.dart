@@ -8,4 +8,5 @@ class AppTheme {
   static const Color scaffoldColor = Color(0xFFEDF7FF);
   static const Color lightBlue = Color(0xFF38AECC);
   static const Color lightGray = Color(0xFFD3DEE6);
+  static const Color red = Color(0xFFFFAC9B);
 }
