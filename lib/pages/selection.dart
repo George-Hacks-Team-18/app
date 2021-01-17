@@ -25,7 +25,7 @@ class SelectionPage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.asset(
-                    "assets/vaxifiedicon.png",
+                    "assets/vaxbanner.png",
                   ),
                 ),
               ),
