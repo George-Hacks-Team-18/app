@@ -40,7 +40,7 @@ class DoseInfoPage extends StatelessWidget {
               ),
               InfoTile(
                 dose.professionalOrClinic,
-                'Professional or Clinic Site',
+                'Professional',
                 color: AppTheme.secondaryText,
               ),
             ],
