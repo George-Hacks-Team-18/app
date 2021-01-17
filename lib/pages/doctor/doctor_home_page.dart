@@ -5,6 +5,7 @@ import 'package:app/components/themed_scaffold.dart';
 import 'package:app/components/themed_text.dart';
 import 'package:app/components/themed_text_field.dart';
 import 'package:app/models/patient.dart';
+import 'package:app/pages/doctor/edit_patient_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -47,7 +48,10 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
   @override
   Widget build(BuildContext context) {
     return ThemedScaffold([
-      Header('Browse Patients'),
+      Header(
+        'Browse Patients',
+        showBack: true,
+      ),
       SliverToBoxAdapter(
         child: ThemedTextField(
             text: 'Search',
@@ -57,15 +61,21 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
           delegate: SliverChildBuilderDelegate(
               (c, i) => Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ThemedText(
-                                '${renderPatients[i].lastName}, ${renderPatients[i].firstName} ${renderPatients[i].middleName}'),
-                            ThemedText(renderPatients[i].patientNumber),
-                          ],
+                      TextButton(
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => EditPatientInfoPage())),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ThemedText(
+                                  '${renderPatients[i].lastName}, ${renderPatients[i].firstName} ${renderPatients[i].middleName}'),
+                              ThemedText(renderPatients[i].patientNumber),
+                            ],
+                          ),
                         ),
                       ),
                       Divider()

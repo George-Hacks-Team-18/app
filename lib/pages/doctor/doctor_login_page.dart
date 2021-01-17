@@ -2,7 +2,7 @@ import 'package:app/components/button.dart';
 import 'package:app/components/header.dart';
 import 'package:app/components/themed_text_field.dart';
 import 'package:app/globals/app_theme.dart';
-import 'package:app/pages/sign_up_page.dart';
+import 'package:app/pages/patient/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 import 'doctor_home_page.dart';
