@@ -1,5 +1,6 @@
 import 'package:app/components/button.dart';
 import 'package:app/components/header.dart';
+import 'package:app/components/themed_scaffold.dart';
 import 'package:app/components/themed_text_field.dart';
 import 'package:app/globals/app_theme.dart';
 import 'package:app/pages/patient/sign_up_page.dart';
@@ -19,80 +20,76 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppTheme.primary,
-      body: CustomScrollView(
-        slivers: [
-          Header(
-            'Medical Login',
-            color: AppTheme.scaffoldColor,
-            showBack: true,
-          ),
-          SliverFillRemaining(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(32),
-                    topRight: Radius.circular(32)),
-                child: Container(
-                  color: AppTheme.scaffoldColor,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 32),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            'assets/vaxifiedicon.png',
-                            height: 142,
-                          ),
+    return ThemedScaffold(
+      [
+        Header(
+          'Medical Login',
+          color: AppTheme.scaffoldColor,
+          showBack: true,
+        ),
+        SliverFillRemaining(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(32), topRight: Radius.circular(32)),
+              child: Container(
+                color: AppTheme.scaffoldColor,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 32),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          'assets/vaxifiedicon.png',
+                          height: 142,
                         ),
                       ),
-                      ThemedTextField(
-                        text: 'Username',
-                        onChanged: (v) => patientNumber = v,
+                    ),
+                    ThemedTextField(
+                      text: 'Username',
+                      onChanged: (v) => patientNumber = v,
+                    ),
+                    ThemedTextField(
+                      text: 'Password',
+                      onChanged: (v) => password = v,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text('Forgot Password'),
+                            onPressed: () {},
+                          )
+                        ],
                       ),
-                      ThemedTextField(
-                        text: 'Password',
-                        onChanged: (v) => password = v,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                              child: Text('Forgot Password'),
-                              onPressed: () {},
-                            )
-                          ],
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: double.infinity,
+                        child: Button(
+                          'Log In',
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DoctorHomePage())),
                         ),
                       ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: double.infinity,
-                          child: Button(
-                            'Log In',
-                            onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => DoctorHomePage())),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
