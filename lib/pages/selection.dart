@@ -10,7 +10,8 @@ class SelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: CustomScrollView(
+        body: SafeArea(
+            child: CustomScrollView(
       physics: NeverScrollableScrollPhysics(),
       slivers: [
         Header("Welcome"),
@@ -54,6 +55,6 @@ class SelectionPage extends StatelessWidget {
           ],
         ))
       ],
-    ));
+    )));
   }
 }
