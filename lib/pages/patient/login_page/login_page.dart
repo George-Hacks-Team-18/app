@@ -6,9 +6,8 @@ import 'package:app/globals/app_theme.dart';
 import 'package:app/pages/patient/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
-
-login(loggedinStudent, loggedinTeacher) => {};
+import '../home_page.dart';
+import 'login_function.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -26,13 +25,14 @@ class _LoginPageState extends State<LoginPage> {
         color: AppTheme.scaffoldColor,
         showBack: true,
       ),
-      SliverFillRemaining(
+      SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: ClipRRect(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(32), topRight: Radius.circular(32)),
             child: Container(
+              height: MediaQuery.of(context).size.height,
               color: AppTheme.scaffoldColor,
               child: Column(
                 children: [
@@ -80,13 +80,18 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       width: double.infinity,
-                      child: Button(
-                        'Log In',
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage())),
-                      ),
+                      child: Button('Log In', onPressed: () async {
+                        bool canLogin = await login(
+                            int.parse(patientNumber ?? '-1'),
+                            password ?? '',
+                            context);
+                        canLogin
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()))
+                            : print('no');
+                      }),
                     ),
                   ),
                 ],

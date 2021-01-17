@@ -6,8 +6,6 @@ import 'package:app/globals/app_theme.dart';
 import 'package:app/models/patient.dart';
 import 'package:flutter/material.dart';
 
-login(loggedinStudent, loggedinTeacher) => {};
-
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();

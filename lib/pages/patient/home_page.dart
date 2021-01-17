@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage> {
       future: futureAlbum,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          print((snapshot.data.data).toString());
           return ThemedScaffold([
             Header(
               'Info',
