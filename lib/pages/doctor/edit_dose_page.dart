@@ -35,7 +35,10 @@ class _EditDosePageState extends State<EditDosePage> {
   @override
   Widget build(BuildContext context) {
     return ThemedScaffold([
-      Header('Edit Dose Info'),
+      Header(
+        'Edit Dose Info',
+        showBack: true,
+      ),
       SliverList(
         delegate: SliverChildListDelegate(
           [
