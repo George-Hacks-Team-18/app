@@ -28,11 +28,11 @@ class HomePage extends StatelessWidget {
           Patient patient;
           var data = snapshot.data;
           int index;
-          print('442048242348324903842084204822084289082490482');
+
           for (int i = 0; i < data.length; i++)
             if (data[i]['patientNumber'] == data[index ?? 0]['patientNumber'])
               index = i;
-          print(index);
+
           List<String> names = data[index]['name'].split(' ');
           patient = new Patient(
               firstName: names[0],
