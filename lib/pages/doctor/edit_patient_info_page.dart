@@ -156,6 +156,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                 middleName: middleInitialController.text,
                                 dateOfBirth: birthDateController.text,
                                 patientNumber: patientNumController.text,
+                                password: data['password'],
                                 product: data['product'],
                                 doses: [
                                   new Dose(
