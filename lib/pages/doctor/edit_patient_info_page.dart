@@ -60,8 +60,8 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                       children: List.generate(
                         2,
                         (i) {
-                          var date = jsonDecode(data['date']);
-                          if (date[i]['vax'] != "") {
+                          var doses = jsonDecode(data['doses']);
+                          if (doses[i]['date'] != null) {
                             return ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Container(
@@ -85,7 +85,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                         "assets/yesvaccineblank.png",
                                         height: 72,
                                       ),
-                                      ThemedText(date[i]['vax'],
+                                      ThemedText(doses[i]['date'],
                                           color: AppTheme.buttonText)
                                     ],
                                   ),

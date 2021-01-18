@@ -15,7 +15,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String patientNumber, password, password2;
+  String patientNumber, password2;
   Patient patient;
 
   @override
@@ -26,62 +26,72 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ThemedScaffold([
-      Header('Sign Up', showBack: true),
-      SliverList(
-        delegate: SliverChildListDelegate([
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 80),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                'assets/vaxbanner.png',
+    return ThemedScaffold(
+      [
+        Header('Sign Up', showBack: true),
+        SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 16, right: 16, top: 16, bottom: 80),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    'assets/vaxbanner.png',
+                  ),
+                ),
               ),
-            ),
-          ),
-          ThemedTextField(
-            text: 'First Name',
-            onChanged: (v) => patient.firstName = v,
-          ),
-          ThemedTextField(
-            text: 'Last Name',
-            onChanged: (v) => patient.lastName = v,
-          ),
-          ThemedTextField(
-            text: 'Middle Initial',
-            onChanged: (v) => patient.middleName = v,
-          ),
-          ThemedTextField(
-            text: 'Date of Birth (MM/DD/YY)',
-            onChanged: (v) => patient.dateOfBirth = v,
-          ),
-          Divider(),
-          ThemedTextField(
-            text: 'Patient Number',
-            onChanged: (v) => patient.patientNumber = v,
-          ),
-          ThemedTextField(
-            text: 'Password',
-            onChanged: (v) => patient.password = v,
-          ),
-          Divider(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              width: double.infinity,
-              child: Button(
-                'Sign Up',
-                onPressed: () async {
-                  patient.doses = [new Dose(), new Dose()];
-                  await postPatient(patient);
-                  Navigator.pop(context);
-                },
+              ThemedTextField(
+                text: 'First Name',
+                onChanged: (v) => patient.firstName = v,
               ),
-            ),
+              ThemedTextField(
+                text: 'Last Name',
+                onChanged: (v) => patient.lastName = v,
+              ),
+              ThemedTextField(
+                text: 'Middle Initial',
+                onChanged: (v) => patient.middleName = v,
+              ),
+              ThemedTextField(
+                text: 'Date of Birth (MM/DD/YY)',
+                onChanged: (v) => patient.dateOfBirth = v,
+              ),
+              Divider(),
+              ThemedTextField(
+                text: 'Patient Number',
+                onChanged: (v) => patient.patientNumber = v,
+              ),
+              ThemedTextField(
+                text: 'Password',
+                onChanged: (v) => patient.password = v,
+              ),
+              ThemedTextField(
+                text: 'Confirm Password',
+                onChanged: (v) => password2 = v,
+              ),
+              Divider(),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  width: double.infinity,
+                  child: Button(
+                    'Sign Up',
+                    onPressed: () async {
+                      if (patient.password == password2) {
+                        patient.doses = [new Dose(), new Dose()];
+                        await postPatient(patient);
+                        Navigator.pop(context);
+                      }
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
-        ]),
-      ),
-    ]);
+        ),
+      ],
+    );
   }
 }
