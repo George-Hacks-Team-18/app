@@ -16,8 +16,8 @@ import 'package:flutter/material.dart';
 import 'edit_dose_page.dart';
 
 class EditPatientInfoPage extends StatefulWidget {
-  final int patientNum;
-  EditPatientInfoPage(this.patientNum);
+  final int patientNumber;
+  EditPatientInfoPage(this.patientNumber);
 
   @override
   _EditPatientInfoPageState createState() => _EditPatientInfoPageState();
@@ -30,8 +30,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
   TextEditingController firstNameController,
       lastNameController,
       middleInitialController,
-      birthDateController,
-      patientNumController;
+      birthDateController;
 
   @override
   void initState() {
@@ -60,7 +59,6 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                         2,
                         (i) {
                           var doses = jsonDecode(data['doses']);
-                          print(data);
                           if (doses[i]['date'] != '') {
                             return ClipRRect(
                               borderRadius: BorderRadius.circular(12),
@@ -138,8 +136,14 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                             controller: middleInitialController),
                         CustomTextField('Date of Birth',
                             controller: birthDateController),
-                        CustomTextField('Patient Number',
-                            controller: patientNumController),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Divider(
+                            color: AppTheme.primaryText,
+                          ),
+                        ),
+                        InfoTile(
+                            widget.patientNumber.toString(), 'Patient Number'),
                       ],
                     ),
                     Padding(
@@ -155,7 +159,6 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                 lastName: lastNameController.text,
                                 middleName: middleInitialController.text,
                                 dateOfBirth: birthDateController.text,
-                                patientNumber: patientNumController.text,
                                 password: data['password'],
                                 product: data['product'],
                                 doses: [
@@ -187,7 +190,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
     final List album = await fetchAlbum();
 
     for (int i = 0; i < album.length; i++)
-      if (album[i]['patientNumber'] == widget.patientNum) index = i;
+      if (album[i]['patientNumber'] == widget.patientNumber) index = i;
 
     List<String> names = album[index]['name'].split(' ');
 
@@ -199,8 +202,6 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
           new TextEditingController(text: names.length > 2 ? names[2] : '');
       birthDateController =
           new TextEditingController(text: album[index]['dob']);
-      patientNumController = new TextEditingController(
-          text: album[index]['patientNumber'].toString());
       loading = false;
     });
   }

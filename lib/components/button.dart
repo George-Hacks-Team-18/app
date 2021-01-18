@@ -9,6 +9,7 @@ class Button extends StatelessWidget {
   final ButtonStyle buttonStyleOverides;
   final TextStyle textStyleOverides;
   final Color color;
+  final bool hasPadding;
 
   Button(
     this.text, {
@@ -17,23 +18,27 @@ class Button extends StatelessWidget {
     this.buttonStyleOverides = const ButtonStyle(),
     this.textStyleOverides = const TextStyle(),
     this.color,
+    this.hasPadding = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      child: Text(
-        text,
-        style: textStyleOverides.merge(
-          textStyle,
+    return Padding(
+      padding: EdgeInsets.only(bottom: hasPadding ? 32 : 1),
+      child: TextButton(
+        child: Text(
+          text,
+          style: textStyleOverides.merge(
+            textStyle,
+          ),
         ),
-      ),
-      onPressed: onPressed,
-      style: buttonStyleOverides.merge(
-        TextButton.styleFrom(
-          backgroundColor: color ?? backgroundColor,
-          padding: edgeInsets,
-          shape: shape,
+        onPressed: onPressed,
+        style: buttonStyleOverides.merge(
+          TextButton.styleFrom(
+            backgroundColor: color ?? backgroundColor,
+            padding: edgeInsets,
+            shape: shape,
+          ),
         ),
       ),
     );

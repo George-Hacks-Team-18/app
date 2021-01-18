@@ -47,6 +47,7 @@ class SelectionPage extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(10),
                 child: Button("I'm a Patient",
+                    hasPadding: false,
                     onPressed: () => Navigator.push(context,
                         MaterialPageRoute(builder: (c) => LoginPage()))),
               ),

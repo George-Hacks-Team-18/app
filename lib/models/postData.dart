@@ -4,7 +4,6 @@ import 'package:app/models/patient.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> postPatient(Patient patient) async {
-  print(patient.doses);
   return http.post(
     'http://ec2-52-4-221-100.compute-1.amazonaws.com/api/adddata',
     headers: <String, String>{
