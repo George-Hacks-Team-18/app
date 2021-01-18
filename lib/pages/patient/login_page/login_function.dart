@@ -1,4 +1,3 @@
-import 'package:app/globals/patient_info.dart';
 import 'package:flutter/material.dart';
 import 'package:app/globals/getData.dart';
 

@@ -7,7 +7,6 @@ import 'package:app/components/themed_scaffold.dart';
 import 'package:app/components/themed_text.dart';
 import 'package:app/globals/app_theme.dart';
 import 'package:app/globals/getData.dart';
-import 'package:app/globals/patient_info.dart';
 import 'package:app/models/patient.dart';
 import 'package:app/pages/patient/dose_info_page.dart';
 import 'package:flutter/material.dart';
@@ -29,20 +28,20 @@ class HomePage extends StatelessWidget {
           Patient patient;
           var data = snapshot.data;
           int index;
-
-          for (int i = 0; i < data.length; i++) {
-            if (data[i]['patientNumber'] == patientNumber) {
+          print('442048242348324903842084204822084289082490482');
+          for (int i = 0; i < data.length; i++)
+            if (data[i]['patientNumber'] == data[index ?? 0]['patientNumber'])
               index = i;
-              List<String> names = data[i]['name'].split(' ');
-              patient = new Patient(
-                firstName: names[0],
-                lastName: names[1],
-                middleName: names.length > 2 ? names[2] : '',
-                dateOfBirth: data[i]['dob'],
-                patientNumber: data[i]['patientNumber'].toString(),
-              );
-            }
-          }
+          print(index);
+          List<String> names = data[index]['name'].split(' ');
+          patient = new Patient(
+              firstName: names[0],
+              lastName: names[1],
+              middleName: names.length > 2 ? names[2] : '',
+              dateOfBirth: data[index]['dob'],
+              patientNumber: data[index]['patientNumber'].toString(),
+              product: data[index]['product']);
+
           return ThemedScaffold([
             Header(
               'Info',
@@ -69,12 +68,15 @@ class HomePage extends StatelessWidget {
                             onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (c) => DoseInfoPage(
-                                        new Dose(
-                                            date: doses[i]['date'],
-                                            professionalOrClinic: data[index]
-                                                ['professional']),
-                                        i + 1))),
+                                  builder: (c) => DoseInfoPage(
+                                    productName: patient.product,
+                                    dose: new Dose(
+                                        date: doses[i]['date'],
+                                        professionalOrClinic: data[index]
+                                            ['professional']),
+                                    doseNum: i + 1,
+                                  ),
+                                )),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
