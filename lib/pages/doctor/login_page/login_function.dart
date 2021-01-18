@@ -7,15 +7,15 @@ class DoctorLogin {
 }
 
 Future<bool> login(String username, String password) async {
+  bool canLogin = false;
   await Firestore.instance
       .collection('doctors')
       .getDocuments()
       .then((value) => value.documents.forEach((element) {
-            if (element['username'] == username) if (element['password'] ==
-                password)
-              return true;
-            else
-              return false;
+            if (element['username'] == username) {
+              canLogin = element['password'] == password;
+              return;
+            }
           }));
-  return false;
+  return canLogin;
 }
