@@ -27,73 +27,62 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              Header('Sign Up', showBack: true),
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 32),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        'assets/vaxbanner.png',
-                        height: 142,
-                      ),
-                    ),
-                  ),
-                  ThemedTextField(
-                    text: 'First Name',
-                    onChanged: (v) => firstName = v,
-                  ),
-                  ThemedTextField(
-                    text: 'Last Name',
-                    onChanged: (v) => lastName = v,
-                  ),
-                  ThemedTextField(
-                    text: 'Middle Initial',
-                    onChanged: (v) => middleName = v,
-                  ),
-                  ThemedTextField(
-                    text: 'Date of Birth (MM/DD/YY)',
-                    onChanged: (v) => dateOfBirth = v,
-                  ),
-                  Divider(),
-                  ThemedTextField(
-                    text: 'Patient Number',
-                    onChanged: (v) => patientNumber = v,
-                  ),
-                  ThemedTextField(
-                    text: 'Password',
-                    onChanged: (v) => password = v,
-                  ),
-                  ThemedTextField(
-                    text: 'Confirm Password',
-                    onChanged: (v) => password2 = v,
-                  ),
-                  SizedBox(height: 110),
-                ]),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: double.infinity,
-                child: Button(
-                  'Sign Up',
-                  onPressed: () => print('sign up'),
-                ),
+    return ThemedScaffold([
+      Header('Sign Up', showBack: true),
+      SliverList(
+        delegate: SliverChildListDelegate([
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 80),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                'assets/vaxbanner.png',
               ),
             ),
           ),
-        ],
+          ThemedTextField(
+            text: 'First Name',
+            onChanged: (v) => firstName = v,
+          ),
+          ThemedTextField(
+            text: 'Last Name',
+            onChanged: (v) => lastName = v,
+          ),
+          ThemedTextField(
+            text: 'Middle Initial',
+            onChanged: (v) => middleName = v,
+          ),
+          ThemedTextField(
+            text: 'Date of Birth (MM/DD/YY)',
+            onChanged: (v) => dateOfBirth = v,
+          ),
+          Divider(),
+          ThemedTextField(
+            text: 'Patient Number',
+            onChanged: (v) => patientNumber = v,
+          ),
+          ThemedTextField(
+            text: 'Password',
+            onChanged: (v) => password = v,
+          ),
+          ThemedTextField(
+            text: 'Confirm Password',
+            onChanged: (v) => password2 = v,
+          ),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Container(
+              width: double.infinity,
+              child: Button(
+                'Sign Up',
+                onPressed: () => print('sign up'),
+              ),
+            ),
+          ),
+        ]),
       ),
-    );
+    ]);
   }
 }
