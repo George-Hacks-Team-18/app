@@ -5,7 +5,6 @@ import 'package:app/components/themed_scaffold.dart';
 import 'package:app/components/themed_text.dart';
 import 'package:app/components/themed_text_field.dart';
 import 'package:app/globals/getData.dart';
-import 'package:app/models/parse_json.dart';
 import 'package:app/models/patient.dart';
 import 'package:app/pages/doctor/edit_patient_info_page.dart';
 import 'package:flutter/material.dart';
