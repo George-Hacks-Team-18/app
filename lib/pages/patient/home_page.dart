@@ -30,8 +30,7 @@ class HomePage extends StatelessWidget {
           int index;
 
           for (int i = 0; i < data.length; i++)
-            if (data[i]['patientNumber'] == data[index ?? 0]['patientNumber'])
-              index = i;
+            if (data[i]['patientNumber'] == patientNumber) index = i;
 
           List<String> names = data[index]['name'].split(' ');
           patient = new Patient(

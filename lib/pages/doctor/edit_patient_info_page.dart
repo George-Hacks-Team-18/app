@@ -187,8 +187,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
     final List album = await fetchAlbum();
 
     for (int i = 0; i < album.length; i++)
-      if (album[i]['patientNumber'] == album[index ?? 0]['patientNumber'])
-        index = i;
+      if (album[i]['patientNumber'] == widget.patientNum) index = i;
 
     List<String> names = album[index]['name'].split(' ');
 

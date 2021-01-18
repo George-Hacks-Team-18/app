@@ -72,7 +72,7 @@ class _EditDosePageState extends State<EditDosePage> {
                     setState(() {
                       loading = true;
                     });
-                    load();
+                    Navigator.pop(context);
                   },
                 ),
               ),
