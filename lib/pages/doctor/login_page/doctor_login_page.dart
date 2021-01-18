@@ -78,7 +78,7 @@ class _DoctorLoginPageState extends State<DoctorLoginPage> {
                           'Log In',
                           onPressed: () async {
                             bool canLogin =
-                                await login(username, password ?? '', context);
+                                await login(username, password ?? '');
                             canLogin
                                 ? Navigator.push(
                                     context,
