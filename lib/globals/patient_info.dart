@@ -6,10 +6,9 @@ Patient patient = new Patient(
   middleName: 'F',
   dateOfBirth: '07/30/04',
   patientNumber: '123456',
+  product: 'Vaccine!',
   doses: [
     new Dose(
-      productName: 'Vaccine!',
-      lotNumber: '222',
       date: '01/12/21',
       professionalOrClinic: 'Dr. RealDoctor',
     )
