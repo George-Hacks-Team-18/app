@@ -63,11 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           ThemedTextField(
             text: 'Password',
-            onChanged: (v) => password = v,
-          ),
-          ThemedTextField(
-            text: 'Confirm Password',
-            onChanged: (v) => password2 = v,
+            onChanged: (v) => patient.password = v,
           ),
           Divider(),
           Padding(

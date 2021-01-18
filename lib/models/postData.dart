@@ -16,7 +16,8 @@ Future<void> postPatient(Patient patient) async {
       'product': patient.product,
       'doses':
           '[{\"date\":${patient.doses[0].date},\"professional\":${patient.doses[0].professionalOrClinic}},{\"date\":${patient.doses[1].date},\"professional\":${patient.doses[1].professionalOrClinic}}]',
-      'patientNumber': patient.patientNumber
+      'patientNumber': patient.patientNumber,
+      'password': patient.password
     }),
   );
 }
