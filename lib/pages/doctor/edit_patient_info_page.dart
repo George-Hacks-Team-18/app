@@ -16,8 +16,8 @@ import 'package:flutter/material.dart';
 import 'edit_dose_page.dart';
 
 class EditPatientInfoPage extends StatefulWidget {
-  final int index;
-  EditPatientInfoPage(this.index);
+  final int patientNum;
+  EditPatientInfoPage(this.patientNum);
 
   @override
   _EditPatientInfoPageState createState() => _EditPatientInfoPageState();
@@ -25,6 +25,7 @@ class EditPatientInfoPage extends StatefulWidget {
 
 class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
   bool loading;
+  int index;
   Map data;
   TextEditingController firstNameController,
       lastNameController,
@@ -74,7 +75,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (c) => EditDosePage(
-                                                index: widget.index,
+                                                index: index,
                                                 doseNum: i + 1,
                                               ))),
                                   child: Column(
@@ -105,8 +106,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (c) => EditDosePage(
-                                              doseNum: i + 1,
-                                              index: widget.index))),
+                                              doseNum: i + 1, index: index))),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -186,18 +186,22 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
   void load() async {
     final List album = await fetchAlbum();
 
-    List<String> names = album[widget.index]['name'].split(' ');
+    for (int i = 0; i < album.length; i++)
+      if (album[i]['patientNumber'] == album[index ?? 0]['patientNumber'])
+        index = i;
+
+    List<String> names = album[index]['name'].split(' ');
 
     setState(() {
-      data = album[widget.index];
+      data = album[index];
       firstNameController = new TextEditingController(text: names[0]);
       lastNameController = new TextEditingController(text: names[1]);
       middleInitialController =
           new TextEditingController(text: names.length > 2 ? names[2] : '');
       birthDateController =
-          new TextEditingController(text: album[widget.index]['dob']);
+          new TextEditingController(text: album[index]['dob']);
       patientNumController = new TextEditingController(
-          text: album[widget.index]['patientNumber'].toString());
+          text: album[index]['patientNumber'].toString());
       loading = false;
     });
   }
