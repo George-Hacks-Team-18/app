@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "313218243444",
+    "project_id": "vaxified-820b2",
+    "storage_bucket": "vaxified-820b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313218243444:android:59d372d8aa6f73694fea21",
+        "android_client_info": {
+          "package_name": "com.vaxified.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313218243444-ejbbo0gglngq8qul5eb3dnbijdorpuis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_687_jdPFGxa_nX4IScT2cAu89LxKUjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313218243444-ejbbo0gglngq8qul5eb3dnbijdorpuis.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "313218243444-3468qiadh829lqas64q3lrekrktmd5vt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vaxified.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
