@@ -11,6 +11,7 @@ import 'package:app/globals/app_theme.dart';
 import 'package:app/globals/getData.dart';
 import 'package:app/models/patient.dart';
 import 'package:app/models/postData.dart';
+import 'package:app/pages/doctor/edit_patient_info_page.dart';
 import 'package:flutter/material.dart';
 
 class EditDosePage extends StatefulWidget {

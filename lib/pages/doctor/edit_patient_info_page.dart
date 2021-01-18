@@ -102,11 +102,17 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                   style: TextButton.styleFrom(
                                       backgroundColor: AppTheme.red,
                                       padding: EdgeInsets.zero),
-                                  onPressed: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (c) => EditDosePage(
-                                              doseNum: i + 1, index: index))),
+                                  onPressed: () {
+                                    setState(() => loading = true);
+                                    Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                maintainState: false,
+                                                builder: (c) => EditDosePage(
+                                                    doseNum: i + 1,
+                                                    index: index)))
+                                        .then((value) => load());
+                                  },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -170,8 +176,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                             setState(() {
                               loading = true;
                             });
-                            Navigator.pop(context);
-                            Navigator.pop(context);
+                            load();
                           },
                         ),
                       ),
