@@ -11,6 +11,7 @@ import 'package:app/globals/app_theme.dart';
 import 'package:app/globals/getData.dart';
 import 'package:app/globals/patient_info.dart';
 import 'package:app/models/patient.dart';
+import 'package:app/models/postData.dart';
 import 'package:flutter/material.dart';
 
 import 'edit_dose_page.dart';
@@ -149,7 +150,20 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                         child: Button(
                           'Save Changes',
                           onPressed: () {
-                            print('saving');
+                            Patient patient = new Patient(
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text,
+                                middleName: middleInitialController.text,
+                                dateOfBirth: birthDateController.text,
+                                patientNumber: patientNumController.text);
+                            postPatient(patient, [
+                              new Dose(
+                                  date: data['date'][0]['vax'],
+                                  productName: data[index]['product']),
+                              new Dose(
+                                  date: data['date'][1]['vax'],
+                                  productName: data[index]['product'])
+                            ]);
                           },
                         ),
                       ),
