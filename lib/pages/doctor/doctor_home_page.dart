@@ -92,15 +92,18 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
     List<Patient> _patients = [];
     final album = await fetchAlbum();
 
-    album.forEach((p) {
-      print(p);
-      List<String> names = p['name'].split(' ');
+    Map<int, int> ps = new Map();
+    for (int i = 0; i < album.length; i++) {
+      ps[album[i]['patientNumber']] = i;
+    }
+    ps.forEach((n, i) {
+      List<String> names = album[i]['name'].split(' ');
 
       _patients.add(new Patient(
           firstName: names[0],
           lastName: names[1],
           middleName: names.length > 2 ? names[2] : '',
-          patientNumber: p['patientNumber'].toString()));
+          patientNumber: album[i]['patientNumber'].toString()));
     });
 
     setState(() {
