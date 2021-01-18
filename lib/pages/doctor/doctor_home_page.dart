@@ -51,7 +51,8 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (c) => EditPatientInfoPage(
-                                        renderPatients[i].index))),
+                                        int.parse(
+                                            renderPatients[i].patientNumber)))),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
