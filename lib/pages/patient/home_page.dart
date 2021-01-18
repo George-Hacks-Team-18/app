@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
                                     productName: patient.product,
                                     dose: new Dose(
                                         date: doses[i]['date'],
-                                        professionalOrClinic: data[index]
+                                        professionalOrClinic: doses[i]
                                             ['professional']),
                                     doseNum: i + 1,
                                   ),

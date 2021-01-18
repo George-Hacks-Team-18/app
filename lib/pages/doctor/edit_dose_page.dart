@@ -121,7 +121,8 @@ class _EditDosePageState extends State<EditDosePage> {
         // numberController = new TextEditingController(text: '');
         dateController =
             new TextEditingController(text: doses[widget.doseNum - 1]['date']);
-        professionalController = new TextEditingController(text: '');
+        professionalController = new TextEditingController(
+            text: doses[widget.doseNum - 1]['professional']);
         loading = false;
       });
       return;

@@ -37,7 +37,7 @@ class DoseInfoPage extends StatelessWidget {
                 InfoTile(productName, 'Product Name'),
                 // InfoTile(dose.lotNumber, 'Lot Number'),
                 InfoTile(dose.date, 'Date'),
-                InfoTile(dose.professionalOrClinic ?? 'N/A', 'Professional'),
+                InfoTile(dose.professionalOrClinic, 'Professional'),
               ],
             ),
           ],
