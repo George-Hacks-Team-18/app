@@ -159,10 +159,10 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                             postPatient(patient, [
                               new Dose(
                                   date: jsonDecode(data['date'])[0]['vax'],
-                                  productName: data[index]['product']),
+                                  productName: data['product']),
                               new Dose(
                                   date: jsonDecode(data['date'])[1]['vax'],
-                                  productName: data[index]['product']),
+                                  productName: data['product']),
                             ]);
                           },
                         ),
