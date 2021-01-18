@@ -9,6 +9,7 @@ import 'package:app/components/themed_text.dart';
 import 'package:app/components/themed_text_field.dart';
 import 'package:app/globals/app_theme.dart';
 import 'package:app/globals/getData.dart';
+import 'package:app/globals/patient_info.dart';
 import 'package:app/models/patient.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class DoseInfoPage extends StatelessWidget {
             Section(
               title: 'Dose $doseNum',
               children: [
-                InfoTile(dose.productName, 'Product Name'),
+                InfoTile(patient.product, 'Product Name'),
                 // InfoTile(dose.lotNumber, 'Lot Number'),
                 InfoTile(dose.date, 'Date'),
                 // InfoTile(dose.professionalOrClinic, 'Professional'),

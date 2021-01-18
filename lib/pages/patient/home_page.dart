@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
           var data = snapshot.data;
           int index;
 
-          for (var i = 0; i < data.length; i++) {
+          for (int i = 0; i < data.length; i++) {
             if (data[i]['patientNumber'] == patientNumber) {
               index = i;
               List<String> names = data[i]['name'].split(' ');
@@ -43,7 +43,6 @@ class HomePage extends StatelessWidget {
               );
             }
           }
-
           return ThemedScaffold([
             Header(
               'Info',
@@ -56,9 +55,8 @@ class HomePage extends StatelessWidget {
                 children: List.generate(
                   2,
                   (i) {
-                    var date = jsonDecode(data[index]['date']);
-                    print(date[i]['vax']);
-                    if (date[i]['vax'] != "") {
+                    var doses = jsonDecode(data[index]['doses']);
+                    if (doses[i]['date'] != null) {
                       return ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Container(
@@ -73,8 +71,9 @@ class HomePage extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (c) => DoseInfoPage(
                                         new Dose(
-                                            date: date[i]['vax'],
-                                            productName: data[index]['product']),
+                                            date: doses[i]['date'],
+                                            professionalOrClinic: data[index]
+                                                ['professional']),
                                         i + 1))),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +82,7 @@ class HomePage extends StatelessWidget {
                                   "assets/yesvaccineblank.png",
                                   height: 72,
                                 ),
-                                ThemedText(date[i]['vax'],
+                                ThemedText(doses[i]['date'],
                                     color: AppTheme.buttonText)
                               ],
                             ),

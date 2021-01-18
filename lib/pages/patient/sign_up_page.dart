@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:app/components/button.dart';
 import 'package:app/components/header.dart';
 import 'package:app/components/themed_scaffold.dart';
 import 'package:app/components/themed_text_field.dart';
 import 'package:app/globals/app_theme.dart';
 import 'package:app/models/patient.dart';
+import 'package:app/models/postData.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -12,16 +15,12 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String firstName,
-      lastName,
-      middleName,
-      dateOfBirth,
-      patientNumber,
-      password,
-      password2;
+  String patientNumber, password, password2;
+  Patient patient;
 
   @override
   void initState() {
+    patient = new Patient();
     super.initState();
   }
 
@@ -43,24 +42,24 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           ThemedTextField(
             text: 'First Name',
-            onChanged: (v) => firstName = v,
+            onChanged: (v) => patient.firstName = v,
           ),
           ThemedTextField(
             text: 'Last Name',
-            onChanged: (v) => lastName = v,
+            onChanged: (v) => patient.lastName = v,
           ),
           ThemedTextField(
             text: 'Middle Initial',
-            onChanged: (v) => middleName = v,
+            onChanged: (v) => patient.middleName = v,
           ),
           ThemedTextField(
             text: 'Date of Birth (MM/DD/YY)',
-            onChanged: (v) => dateOfBirth = v,
+            onChanged: (v) => patient.dateOfBirth = v,
           ),
           Divider(),
           ThemedTextField(
             text: 'Patient Number',
-            onChanged: (v) => patientNumber = v,
+            onChanged: (v) => patient.patientNumber = v,
           ),
           ThemedTextField(
             text: 'Password',
@@ -77,7 +76,11 @@ class _SignUpPageState extends State<SignUpPage> {
               width: double.infinity,
               child: Button(
                 'Sign Up',
-                onPressed: () => print('sign up'),
+                onPressed: () async {
+                  patient.doses = [new Dose(), new Dose()];
+                  await postPatient(patient);
+                  Navigator.pop(context);
+                },
               ),
             ),
           ),
