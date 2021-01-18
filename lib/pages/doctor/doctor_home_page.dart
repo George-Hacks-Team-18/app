@@ -51,7 +51,7 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (c) => EditPatientInfoPage(
-                                        renderPatients[i].patientNumber))),
+                                        renderPatients[i].index))),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -99,11 +99,14 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
     ps.forEach((n, i) {
       List<String> names = album[i]['name'].split(' ');
 
-      _patients.add(new Patient(
-          firstName: names[0],
-          lastName: names[1],
-          middleName: names.length > 2 ? names[2] : '',
-          patientNumber: album[i]['patientNumber'].toString()));
+      _patients.add(
+        new Patient(
+            firstName: names[0],
+            lastName: names[1],
+            middleName: names.length > 2 ? names[2] : '',
+            patientNumber: album[i]['patientNumber'].toString(),
+            index: i),
+      );
     });
 
     setState(() {

@@ -6,17 +6,20 @@ class Patient {
       product,
       patientNumber,
       password;
+  int index;
   List<Dose> doses;
 
-  Patient(
-      {this.firstName,
-      this.lastName,
-      this.middleName,
-      this.dateOfBirth,
-      this.product,
-      this.doses,
-      this.patientNumber,
-      this.password});
+  Patient({
+    this.firstName,
+    this.lastName,
+    this.middleName,
+    this.dateOfBirth,
+    this.product,
+    this.doses,
+    this.patientNumber,
+    this.password,
+    this.index,
+  });
 }
 
 class Dose {
