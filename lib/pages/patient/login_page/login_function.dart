@@ -1,30 +1,18 @@
-import 'package:app/models/parse_json.dart';
+import 'package:app/globals/patient_info.dart';
 import 'package:flutter/material.dart';
-
-class PatientLogin {
-  final int patientNumber;
-  final String password;
-  PatientLogin({@required this.patientNumber, @required this.password});
-}
+import 'package:app/globals/getData.dart';
 
 Future<bool> login(
     int patientNumber, String password, BuildContext context) async {
-  List<PatientLogin> patients = [];
-  List json = await getJSONfromFile(context, 'accounts');
-
-  json.forEach((p) => patients.add(new PatientLogin(
-      patientNumber: p['patientNumber'], password: p['password'])));
-
   bool found = false;
-  patients.forEach((p) {
-    if (p.patientNumber == patientNumber) {
-      if (p.password == password)
-        found = true;
-      else
-        found = false;
-      return;
-    }
-  });
+  var data = await fetchAlbum();
+  for (int i = 0; i < data.length; i++) {
+    String storedPass = data[i]['password'];
+    int storedNumber = data[i]['patientNumber'];
 
+    if (storedPass == password && storedNumber == patientNumber) {
+      found = true;
+    }
+  }
   return found;
 }
