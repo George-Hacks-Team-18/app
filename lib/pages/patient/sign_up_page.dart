@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 onChanged: (v) => patient.middleName = v,
               ),
               ThemedTextField(
-                text: 'Date of Birth (MM/DD/YY)',
+                text: 'Date of Birth (MM/DD/YYYY)',
                 onChanged: (v) => patient.dateOfBirth = v,
               ),
               Divider(),
