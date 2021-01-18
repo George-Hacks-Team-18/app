@@ -81,10 +81,9 @@ class _LoginPageState extends State<LoginPage> {
                     child: Container(
                       width: double.infinity,
                       child: Button('Log In', onPressed: () async {
+                        if (patientNumber == null) return;
                         bool canLogin = await login(
-                            int.parse(patientNumber ?? '-1'),
-                            password ?? '',
-                            context);
+                            int.parse(patientNumber), password ?? '', context);
                         canLogin
                             ? Navigator.push(
                                 context,
