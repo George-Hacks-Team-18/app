@@ -97,6 +97,7 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
       if (album[i]['patientNumber'] != null) ps[album[i]['patientNumber']] = i;
 
     ps.forEach((n, i) {
+      print(i);
       List<String> names = album[i]['name'].split(' ');
 
       _patients.add(

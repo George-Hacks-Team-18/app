@@ -181,6 +181,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                 dateOfBirth: birthDateController.text,
                                 password: data['password'],
                                 product: data['product'],
+                                patientNumber: widget.patientNumber.toString(),
                                 doses: [
                                   new Dose(
                                       date: jsonDecode(data['doses'])[0]
