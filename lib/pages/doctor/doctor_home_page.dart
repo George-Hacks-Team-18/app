@@ -93,9 +93,9 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
     final album = await fetchAlbum();
 
     Map<int, int> ps = new Map();
-    for (int i = 0; i < album.length; i++) {
-      ps[album[i]['patientNumber']] = i;
-    }
+    for (int i = 0; i < album.length; i++)
+      if (album[i]['patientNumber'] != null) ps[album[i]['patientNumber']] = i;
+
     ps.forEach((n, i) {
       List<String> names = album[i]['name'].split(' ');
 
