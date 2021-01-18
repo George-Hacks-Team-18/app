@@ -144,12 +144,26 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                             controller: birthDateController),
                         Padding(
                           padding: const EdgeInsets.all(12.0),
-                          child: Divider(
-                            color: AppTheme.primaryText,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  ThemedText(widget.patientNumber.toString()),
+                                ],
+                              ),
+                              Divider(
+                                color: Color(0xFFA0A0A0),
+                                thickness: 1.1,
+                              ),
+                              Row(
+                                children: [
+                                  ThemedText('Patient Number',
+                                      color: AppTheme.secondaryText),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                        InfoTile(
-                            widget.patientNumber.toString(), 'Patient Number'),
                       ],
                     ),
                     Padding(
