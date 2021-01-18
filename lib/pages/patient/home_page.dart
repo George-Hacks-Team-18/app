@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                   2,
                   (i) {
                     var doses = jsonDecode(data[index]['doses']);
-                    if (doses[i]['date'] != null) {
+                    if (doses[i]['date'] != '') {
                       return ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Container(

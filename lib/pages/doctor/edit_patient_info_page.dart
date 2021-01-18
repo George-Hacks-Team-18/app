@@ -61,7 +61,8 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                         2,
                         (i) {
                           var doses = jsonDecode(data['doses']);
-                          if (doses[i]['date'] != null) {
+                          print(doses[i]['date']);
+                          if (doses[i]['date'] != '') {
                             return ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Container(
@@ -149,7 +150,7 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                         width: double.infinity,
                         child: Button(
                           'Save Changes',
-                          onPressed: () {
+                          onPressed: () async {
                             Patient patient = new Patient(
                                 firstName: firstNameController.text,
                                 lastName: lastNameController.text,
@@ -166,7 +167,12 @@ class _EditPatientInfoPageState extends State<EditPatientInfoPage> {
                                       date: jsonDecode(data['doses'])[1]
                                           ['date']),
                                 ]);
-                            postPatient(patient);
+                            await postPatient(patient);
+                            setState(() {
+                              loading = true;
+                            });
+                            Navigator.pop(context);
+                            Navigator.pop(context);
                           },
                         ),
                       ),

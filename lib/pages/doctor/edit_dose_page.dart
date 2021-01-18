@@ -10,6 +10,7 @@ import 'package:app/components/themed_text_field.dart';
 import 'package:app/globals/app_theme.dart';
 import 'package:app/globals/getData.dart';
 import 'package:app/models/patient.dart';
+import 'package:app/models/postData.dart';
 import 'package:flutter/material.dart';
 
 class EditDosePage extends StatefulWidget {
@@ -22,8 +23,9 @@ class EditDosePage extends StatefulWidget {
 
 class _EditDosePageState extends State<EditDosePage> {
   bool loading, hasDose;
+  Patient patient;
   TextEditingController nameController,
-      numberController,
+      // numberController,
       dateController,
       professionalController;
 
@@ -50,7 +52,8 @@ class _EditDosePageState extends State<EditDosePage> {
                 CustomTextField('Product Name', controller: nameController),
                 // CustomTextField('Lot Number', controller: numberController),
                 CustomTextField('Date', controller: dateController),
-                // CustomTextField('Professional', controller: professionalController),
+                CustomTextField('Professional',
+                    controller: professionalController),
               ],
             ),
             Padding(
@@ -59,7 +62,18 @@ class _EditDosePageState extends State<EditDosePage> {
                 width: double.infinity,
                 child: Button(
                   hasDose == null ? 'Add Dose Info' : 'Save Changes',
-                  onPressed: () {},
+                  onPressed: () async {
+                    patient.product = nameController.text;
+                    patient.doses[widget.doseNum - 1] = new Dose(
+                        date: dateController.text,
+                        professionalOrClinic: professionalController.text);
+
+                    await postPatient(patient);
+                    setState(() {
+                      loading = true;
+                    });
+                    load();
+                  },
                 ),
               ),
             ),
@@ -72,14 +86,32 @@ class _EditDosePageState extends State<EditDosePage> {
   void load() async {
     final List album = await fetchAlbum();
     Map data = album[widget.index];
-    var date = jsonDecode(data['date']);
+    var doses = jsonDecode(data['doses']);
 
-    if (date[widget.doseNum - 1]['vax'] == '') {
+    List<String> names = data['name'].split(' ');
+    patient = new Patient(
+        firstName: names[0],
+        lastName: names[1],
+        middleName: names.length > 2 ? names[2] : '',
+        dateOfBirth: data['dob'],
+        product: data['product'],
+        patientNumber: data['patientNumber'].toString(),
+        password: data['password'],
+        doses: [
+          new Dose(
+              date: doses[0]['date'],
+              professionalOrClinic: doses[0]['professional']),
+          new Dose(
+              date: doses[1]['date'],
+              professionalOrClinic: doses[1]['professional']),
+        ]);
+
+    if (doses[widget.doseNum - 1]['date'] == '') {
       setState(() {
-        nameController = new TextEditingController(text: '');
+        nameController = new TextEditingController(text: data['product'] ?? '');
         // numberController = new TextEditingController(text: '');
         dateController = new TextEditingController(text: '');
-        // professionalController = new TextEditingController(text: '');
+        professionalController = new TextEditingController(text: '');
         loading = false;
       });
       return;
@@ -88,8 +120,8 @@ class _EditDosePageState extends State<EditDosePage> {
         nameController = new TextEditingController(text: data['product']);
         // numberController = new TextEditingController(text: '');
         dateController =
-            new TextEditingController(text: date[widget.doseNum - 1]['vax']);
-        // professionalController = new TextEditingController(text: '');
+            new TextEditingController(text: doses[widget.doseNum - 1]['date']);
+        professionalController = new TextEditingController(text: '');
         loading = false;
       });
       return;
