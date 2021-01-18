@@ -3,18 +3,19 @@ import 'dart:convert';
 import 'package:app/models/patient.dart';
 import 'package:http/http.dart' as http;
 
-Future<void> postPatient(Patient patient, List<Dose> doses) async {
+Future<void> postPatient(Patient patient) async {
+  print(patient.doses);
   return http.post(
     'http://ec2-52-4-221-100.compute-1.amazonaws.com/api/adddata',
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, dynamic>{
-      'name': patient.firstName,
+      'name': '${patient.firstName} ${patient.lastName} ${patient.middleName}',
       'dob': patient.dateOfBirth,
-      'product': doses[0].productName,
-      'date':
-          '[{"vax":"${doses.length > 0 ? doses[0].date : ""}"}, {"vax":"${doses.length > 1 ? doses[1].date : ""}"}]',
+      'product': patient.product,
+      'doses':
+          '[{\"date\":${patient.doses[0].date},\"professional\":${patient.doses[0].professionalOrClinic}},{\"date\":${patient.doses[1].date},\"professional\":${patient.doses[1].professionalOrClinic}}]',
       'patientNumber': patient.patientNumber
     }),
   );

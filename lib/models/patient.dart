@@ -1,5 +1,5 @@
 class Patient {
-  String firstName, lastName, middleName, dateOfBirth, patientNumber;
+  String firstName, lastName, middleName, dateOfBirth, product, patientNumber;
   List<Dose> doses;
 
   Patient(
@@ -7,13 +7,13 @@ class Patient {
       this.lastName,
       this.middleName,
       this.dateOfBirth,
-      this.patientNumber,
-      this.doses});
+      this.product,
+      this.doses,
+      this.patientNumber});
 }
 
 class Dose {
-  String productName, lotNumber, date, professionalOrClinic;
+  String date, professionalOrClinic;
 
-  Dose(
-      {this.productName, this.lotNumber, this.date, this.professionalOrClinic});
+  Dose({this.date, this.professionalOrClinic});
 }
